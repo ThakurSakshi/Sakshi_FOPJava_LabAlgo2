@@ -1,39 +1,74 @@
-package currency;
-import java.util.Arrays; 
+package transactiontargets;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class DriverApp 
-{
+public class DriverApp {
 
 public static void main(String[] args)
 
-Scanner sc=new Scanner(System.in); 
-System.out.println("Please enter number of currency notes in your country");
- int size=sc.nextInt();
+int nod;
 
-int currency[]=new int[size];
-
-System.out.println("Please enter the "+ size +"currency denominations, in any order"); 
-for (int i = 0; i < currency.length; i++) 
 {
 
-currency[i]=sc.nextInt(); 
+Scanner sc=new Scanner(System.in);
+
+System.out.println("Please enter Number of days shop was open"); 
+nod=sc.nextInt();
+
+int trans[]=new int[nod];
+
+int i;
+
+for (i=0; i < trans.length; i++) 
+{
+	System.out.println("Please enter income of Day "+ (i+1));
+ trans[i]=sc.nextInt();
+
 }
 
-System.out.println("Before Sorting" +Arrays.toString(currency));
+System.out.println(Arrays.toString(trans));
 
-MergeSort ms=new MergeSort();
+System.out.println("Please enter number of targets");
+int targets=sc.nextInt();
 
-ms.sort(currency, 0, size-1);
+int sum;
 
-System.out.println("After Sorting in Desc Order" +Arrays.toString(currency));
-System.out.println("Please enter Total Amount");
+int flag;
+for (int j=1;j<=targets;j++)
 
-int amount=sc.nextInt();
+{
 
-NoteCount nc=new NoteCount();
+System.out.println("Please enter Value for target "+j); int singleTarget=sc.nextInt();
+ flag=0;
 
-nc.counting (currency,amount);
+sum=0;
+
+for (int k=0;k<trans.length;k++)
+
+{
+
+sum=sum+trans[k];
+
+if(sum>=singleTarget)
+
+flag=1;
+
+System.out.println("Target achieved on day "+(k+1));
+
+break;
+
+}
+
+} 
+if(flag==0)
+{
+
+System.out.println("Target NOT achieved");
+
+}
+
+}
 
 }
 
